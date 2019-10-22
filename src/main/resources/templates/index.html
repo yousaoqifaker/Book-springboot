@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<table class="table table-striped table-bordered table-hover table-condensed ">
+
+   <caption> <h1>书本列表 -<span th:text="${bookCount}"></span> 共本</h1></caption>
+    <thead>
+    <tr class="success">
+        <th>id</th>
+        <th>isbn</th>
+        <th>书名</th>
+        <th>作者</th>
+        <th>出版社</th>
+        <th>价格</th>
+        <th>册数</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody th:each="lists:${list}">
+        <tr class="info">
+            <td th:text="${lists.getId()}"></td>
+            <td th:text="${lists.getIsbn()}"></td>
+            <td th:text="${lists.getName()}"></td>
+            <td th:text="${lists.getZuo()}"></td>
+            <td th:text="${lists.getChu()}"></td>
+            <td th:text="${lists.getJia()}"></td>
+            <td th:text="${lists.getCe()}"></td>
+            <td><a th:href="@{'/editBook?id='+${lists.getId()}}" ><span class="glyphicon glyphicon-edit"></span> </a>
+            <a th:href="@{'/deleteBook?id='+${lists.getId()}}"><span class="glyphicon glyphicon-trash"></span> </a>
+            <a href="#"><span class="glyphicon glyphicon-plus" data-toggle="modal" data-target=".bs-example-modal-lg" ></span> </a></td>
+        </tr>
+    </tbody>
+</table>
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="addDIV" style="align-content: center">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">增加书本</h3>
+                    </div>
+                    <div class="panel-body">
+
+                        <form method="post" action="/addBook" role="form">
+                            <table class="addTable">
+                                <tr>
+                                    <td>编号：</td>
+                                    <td><input type="text" name="id" id="id" placeholder="请在这里输入编号"></td>
+                                </tr>
+                                <tr>
+                                    <td>isbn：</td>
+                                    <td><input type="text" name="isbn" id="isbn" placeholder="请在这里输入ISBN"></td>
+                                </tr><tr>
+                                <td>书名：</td>
+                                <td><input type="text" name="name" id="name" placeholder="请在这里输入书名"></td>
+                            </tr><tr>
+                                <td>作者：</td>
+                                <td><input type="text" name="zuo" id="zuo" placeholder="请在这里输入作者"></td>
+                            </tr><tr>
+                                <td>出版社：</td>
+                                <td><input type="text" name="chu" id="chu" placeholder="请在这里输入出版社"></td>
+                            </tr><tr>
+                                <td>价格：</td>
+                                <td><input type="text" name="jia" id="jia" placeholder="请在这里输入价格"></td>
+                            </tr>
+                                <tr>
+                                    <td>数量：</td>
+                                    <td><input type="text" name="ce" id="ce" placeholder="请在这里输入数量"></td>
+                                </tr>
+                                <tr class="submitTR">
+                                    <td colspan="2" align="center">
+                                        <button type="submit" class="btn btn-success">提 交</button>
+                                    </td>
+
+                                </tr>
+
+                            </table>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

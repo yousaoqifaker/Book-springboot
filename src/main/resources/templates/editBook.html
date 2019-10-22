@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="webjars/jquery/3.4.1/jquery.min.js"></script>
+    <script src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="editDIV">
+
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3 class="panel-title">编辑书本</h3>
+        </div>
+        <div class="panel-body">
+
+            <form method="post" action="/updateBook" role="form">
+                <table class="editTable">
+                    <tr>
+                        <td>编号：</td>
+                        <td><input type="text" name="id" id="id" th:value="${book.getId()}"
+                                   placeholder="请在这里输入编号"></td>
+                    </tr>
+                    <tr>
+                        <td>isbn：</td>
+                        <td><input type="text" name="isbn" id="isbn" th:value="${book.getIsbn()}" placeholder="请在这里输入isbn">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>书名：</td>
+                        <td><input type="text" name="name" id="name" th:value="${book.getName()}" placeholder="请在这里输入书名"></td>
+                    </tr>
+                    <tr>
+                    <tr>
+                        <td>作者：</td>
+                        <td><input type="text" name="zuo" id="zuo" th:value="${book.zuo}" placeholder="请在这里输入作者"></td>
+                    </tr>
+
+                    <tr>
+                        <td>出版社：</td>
+                        <td><input type="text" name="chu" id="chu" th:value="${book.chu}"
+                                   placeholder="请在这里输入出版社"></td>
+                    </tr>
+                    <tr>
+                        <td>价格：</td>
+                        <td><input type="text" name="jia" id="jia" th:value="${book.jia}" placeholder="请在这里输入价格"></td>
+                    </tr>
+                    <tr>
+                        <td>数量：</td>
+                        <td><input type="text" name="ce" id="ce" th:value="${book.ce}" placeholder="请在这里输入数量"></td>
+                    </tr>
+                    <tr class="submitTR">
+                        <td colspan="2" align="center">
+                            <input type="hidden" name="id" value="${book.id}">
+                            <button type="submit" class="btn btn-success">提 交</button>
+                        </td>
+                    </tr>
+
+                </table>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
