@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ public class ToController {
     @Autowired
     private BookMapper bookMapper;
     @RequestMapping("/")
-    public String toIndex(HttpServletRequest request, HttpServletResponse response, Model model){
+    public String toIndex(Model model){
         ArrayList<Book>list=bookMapper.getBook();
         int i=bookMapper.getBookCount();
         model.addAttribute("bookCount",i);
@@ -31,20 +30,7 @@ public class ToController {
         return "index";
     }
     @RequestMapping("/addBook")
-    public String addBook(HttpServletResponse response, HttpServletRequest request){
-        Book book=new Book();
-        String isbn=request.getParameter("isbn");
-        String name=request.getParameter("name");
-        String zuo=request.getParameter("zuo");
-        String chu=request.getParameter("chu");
-        String jia=request.getParameter("jia");
-        String ce=request.getParameter("ce");
-        book.setIsbn(isbn);
-        book.setName(name);
-        book.setZuo(zuo);
-        book.setChu(chu);
-        book.setJia(jia);
-        book.setCe(ce);
+    public String addBook(Book book){
         bookMapper.addBook(book);
         return "redirect:/";
     }
@@ -61,22 +47,7 @@ public class ToController {
         return mav;
     }
     @RequestMapping("updateBook")
-    public String updateBook(HttpServletRequest request,HttpServletResponse response){
-        Book book=new Book();
-        int id=Integer.parseInt(request.getParameter("id"));
-        String isbn=request.getParameter("isbn");
-        String name=request.getParameter("name");
-        String zuo=request.getParameter("zuo");
-        String chu=request.getParameter("chu");
-        String jia=request.getParameter("jia");
-        String ce=request.getParameter("ce");
-        book.setId(id);
-        book.setIsbn(isbn);
-        book.setName(name);
-        book.setZuo(zuo);
-        book.setChu(chu);
-        book.setJia(jia);
-        book.setCe(ce);
+    public String updateBook(Book book){
         bookMapper.updateBook(book);
         return "redirect:/";
     }
